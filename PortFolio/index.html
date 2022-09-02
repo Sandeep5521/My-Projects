@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>My PortFolio</title>
+  <link rel="stylesheet" href="assets/index.a08c0b5f.css">
+</head>
+<body>
+    <nav class="fixed space-y-1 px-6 py-6 cursor-pointer w-fit" id="nav" onclick="func()">
+        <div class="men h-1 bg-black w-6 rounded"></div>
+        <div class="men h-1 bg-black w-6 rounded"></div>
+        <div class="men h-1 bg-black w-3 rounded"></div>
+    </nav>
+    <section class="fixed shadow-lg h-48 w-screen hidden top-12 bg-black text-white" id="abcd">
+        <div class="space-y-3 text-2xl py-6 text-center">
+            <div class="hover:bg-white hover:text-black cursor-pointer h-10 py-1">About</div>
+            <div class="hover:bg-white hover:text-black cursor-pointer h-10 py-1">Work</div>
+            <div class="hover:bg-white hover:text-black cursor-pointer h-10 py-1">Contact</div>
+        </div>
+    </section>
+    <section class="h-screen bg-[url('simon-berger-twukN12EN7c-unsplash.jpg')] bg-fixed bg-cover text-center text-4xl font-bold py-60 space-y-12">
+        <div>Hi, I'm Sandeep. I design & build websites.</div>
+        <button class="text-base shadow border-2 h-10 w-48 border-black hover:bg-black hover:text-white">Dig into my Universe</button>
+    </section>
+    <section class="h-screen bg-gradient-to-t from-green-300 via-blue-300 to-purple-300 py-40 space-y-10 px-10">
+        <h1 class="text-4xl font-bold">About</h1>
+        <div class="text-2xl">
+            B.Tech in Computer Science. Ability to work with C++, Java, and PHP. Can work well under pressure and make the best of any situation. Passionate individual with great interpersonal and communication skills.
+        </div>
+    </section>
+    <script>
+        let func=()=>{
+            let b=document.getElementById('abcd')
+            let d=document.getElementById('nav')
+            let c=document.getElementsByClassName('men')
+            if(b.style.display == 'none'){
+                b.style.display='block'
+                d.style.backgroundColor="black"
+                for (let i = 0; i < c.length; i++) {
+                    c[i].style.backgroundColor="white"
+                }
+            }
+            else{
+                b.style.display='none'
+                d.style.backgroundColor=""
+                for (let i = 0; i < c.length; i++) {
+                    c[i].style.backgroundColor="black"
+                }
+            }
+        }
+    </script>
+</body>
+</html>

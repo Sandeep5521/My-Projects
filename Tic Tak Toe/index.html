@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Tic Tak Toe</title>
+  <link rel="stylesheet" href="assets/index.0a6ca3ed.css">
+</head>
+<body>
+    <h1 class="text-center mt-12 text-5xl font-bold font-mono">Tic Tak Toe</h1>
+    <button class="rounded-full h-10 w-20 mx-[8.5rem] border bg-black font-semibold text-lg text-center text-white py-1 cursor-pointer hover:bg-red-500 my-5 lg:mx-[39rem]" onclick="del()">Reset</button>
+    <section class="h-60 w-60 mt-5 mx-14 lg:mx-[34rem]">
+        <div class="flex h-20 border-b-4 border-black">
+            <div class="board border-r-4 border-black font-bold h-[4.8rem] w-20 text-6xl text-center cursor-pointer py-1" onclick="func('1')" id="1"></div>
+            <div class="board border-r-4 border-black font-bold h-[4.8rem] w-20 text-6xl text-center cursor-pointer py-1" onclick="func('2')" id="2"></div>
+            <div class="board h-[4.8rem] w-20 text-6xl font-bold text-center cursor-pointer py-1" onclick="func('3')" id="3"></div>
+        </div>
+        <div class="flex h-20 border-b-4 border-black">
+            <div class="board border-r-4 border-black font-bold h-[4.8rem] w-20 text-6xl text-center cursor-pointer py-1" onclick="func('4')" id="4"></div>
+            <div class="board border-r-4 border-black font-bold h-[4.8rem] w-20 text-6xl text-center cursor-pointer py-1" onclick="func('5')" id="5"></div>
+            <div class="board h-[4.8rem] w-20 font-bold text-6xl text-center cursor-pointer py-1" onclick="func('6')" id="6"></div>
+        </div>
+        <div class="flex h-20">
+            <div class="board border-r-4 border-black font-bold h-[4.8rem] w-20 text-6xl text-center cursor-pointer py-1" onclick="func('7')" id="7"></div>
+            <div class="board border-r-4 border-black font-bold h-[4.8rem] w-20 text-6xl text-center cursor-pointer py-1" onclick="func('8')" id="8"></div>
+            <div class="board h-[4.8rem] w-20 font-bold text-6xl text-center cursor-pointer py-1" onclick="func('9')" id="9"></div>
+        </div>
+    </section>
+    <section class="h-40 text-6xl text-center py-10 font-mono" id="win"></section>
+    <script>
+        let b=document.getElementsByClassName('board')
+        let c=[]
+        let t=0
+        let v='X'
+        for(let i=0;i<3;i++){
+            let d=[]
+            let j=t
+            for(j=t;j< t+3;j++){
+                d.push(b[j])
+            }
+            c.push(d)
+            t=j
+        }
+        let win=(a,b)=>{
+            let e=document.getElementById('win') 
+            if(c[a][b].innerText == 'X')
+                e.innerText="'X' WINS"
+            else
+                e.innerText="'O' WINS"
+        }
+        let del=()=>{
+            for(let i=0;i<3;i++){
+                for(let j=0;j<3;j++){
+                    c[i][j].innerText="";
+                }
+            }
+            let e=document.getElementById('win')
+            e.innerText=""     
+        }
+        let draw=()=>{
+            let e=document.getElementById('win')
+            let s=0
+            for(let i=0;i<3;i++){
+                for(let j=0;j<3;j++){
+                    if(c[i][j].innerText == 'X' || c[i][j].innerText == 'O') s++
+                }
+            }
+            if(s == 9) e.innerText="THAT'S A DRAW!"
+        }
+        let func=(s)=>{
+            let d=document.getElementById(s);
+            let m=document.getElementById('win')
+            if(m.innerText != '') return
+            d.style.backgroundColor='white'
+            let a,b;
+            for(let i=0;i<3;i++){
+                for(let j=0;j<3;j++){
+                    if(c[i][j].style.backgroundColor == 'white'){
+                        c[i][j].innerText = v
+                        c[i][j].style.color=(v == 'X')? 'red':'blue'; 
+                        c[i][j].style.backgroundColor=''
+                        a=i;b=j;
+                    }
+                }
+            }
+            let e=0
+            for(let j=0;j<3;j++){
+                if(c[a][j].innerText == v){
+                    e++
+                }
+            }
+            if(e == 3) 
+                win(a,b)
+            e=0
+            for(let j=0;j<3;j++){
+                if(c[j][b].innerText == v){
+                    e++
+                }
+            }
+            if(e == 3) 
+                win(a,b)
+            e=0
+            if(a+b % 2){
+                for(let i=0;i<3;i++)
+                    for(let j=0;j<3;j++) if(i==j && c[i][j].innerText == v) e++
+                if(e == 3) win(a,b)
+                e=0
+                let i=0;j=2;
+                while(i<3 && j>=0){
+                    if(c[i][j].innerText == v) e++
+                    i++;j--;
+                }
+                if(e == 3) win(a,b)
+            }
+            draw()     
+            if(v == 'X') v='O'
+            else v='X'
+        }
+    </script>
+</body>
+</html>
