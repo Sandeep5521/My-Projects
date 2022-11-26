@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>To Do List</title>
+  <link rel="stylesheet" href="assets/index.c9af5026.css">
+</head>
+<body>
+    <section class="bg-gray-50 h-40 px-10 py-10 space-y-5 border-b">
+        <div class="text-3xl text-center text-blue-400 font-mono font-bold">My To Do List</div>
+        <div class="lg:px-[30rem]">
+            <input type="text" id="text" class="rounded h-8 pl-2 text-lg border shadow" placeholder="Title...">
+        <button class="bg-blue-400 text-white w-12 text-center hover:bg-blue-500 h-8 rounded-lg" onclick="add()">Add</button>
+        </div>
+    </section>
+    <section id="add"></section>
+    <script>
+        let a=0;
+        let add=()=>{
+            let b=document.getElementById('add');
+            let t=document.getElementById('text');
+            if(t.value == ""){
+                alert('You must write Something !!');
+                return;
+            }
+            b.innerHTML+=`<div class="flex h-10" id=`+`"`+a.toString()+`" onclick="func(`+a.toString()+`)">
+            <img src="accept-icon.svg" class="h-6 mx-2 my-2 absolute hidden">
+            <div class="h-10 w-screen px-12 bg-gray-100 py-1 hover:bg-gray-200 text-xl cursor-pointer"></div>
+            <img src="delete-icon.svg" class="h-6 mx-2 my-2 absolue cursor-pointer hover:h-8" onclick="del(`+a.toString()+`)" alt="">
+        </div>`
+            b=document.getElementById(a.toString()).firstElementChild;
+            b=b.nextElementSibling;
+            b.innerText=t.value;
+            t.value="";
+            a++;
+        }
+        let func=(b)=>{
+            let t=document.getElementById(b).firstElementChild;
+            t=t.nextElementSibling;
+            if(t.style.textDecorationLine != 'line-through'){
+                t.style.textDecorationLine= 'line-through';
+                t=t.previousElementSibling;t.style.display='block';
+            }
+            else{
+                t.style.textDecorationLine= '';
+                t=t.previousElementSibling;t.style.display='none';
+            }
+        }
+        let del=(b)=>{
+            let t=document.getElementById(b);
+            t.style.display='none';
+        }
+    </script>
+</body>
+</html>

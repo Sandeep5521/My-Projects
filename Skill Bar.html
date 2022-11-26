@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="input.css">
+    <title>bar</title>
+</head>
+<body>
+    <section class="h-40 py-20 px-40 space-y-2">
+        <div class="border flex">
+            <div class="h-10 bg-green-400" id="pro"></div>
+        </div>
+        <div class="flex justify-between">
+            <button class="bg-green-500 text-white font-bold rounded w-[3vw]" onclick="res()">Run</button>
+            <span class="py-1 text-xl" id="bar">0%</span>
+        </div>
+    </section>
+    <script>
+        let res=()=>{
+            let w=0;
+            let b=document.getElementById('pro');
+            b.style.width= w.toString()+"%";
+            let a=document.getElementById('bar');
+            let e=0;
+            let func=()=>{
+                if(w >= 60){
+                    clearInterval(e);
+                    w=0;return;
+                }   
+                w++;
+                a.innerText=w.toString()+"%";
+                b.style.width= w.toString()+"%";
+            }
+            e=setInterval(func,10);
+        }
+    </script>
+</body>
+</html>

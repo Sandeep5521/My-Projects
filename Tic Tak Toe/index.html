@@ -80,7 +80,7 @@
                     if(c[i][j].style.backgroundColor == 'white'){
                         c[i][j].innerText = v
                         c[i][j].style.color=(v == 'X')? 'red':'blue'; 
-                        c[i][j].style.backgroundColor=''
+                        c[i][j].style.backgroundColor='';
                         a=i;b=j;
                     }
                 }
@@ -102,7 +102,7 @@
             if(e == 3) 
                 win(a,b)
             e=0
-            if(a+b % 2){
+            if(!((a+b)%2)){
                 for(let i=0;i<3;i++)
                     for(let j=0;j<3;j++) if(i==j && c[i][j].innerText == v) e++
                 if(e == 3) win(a,b)

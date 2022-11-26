@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="icons8-partly-cloudy-day-96.png">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="assets/index.50196b4d.css">
+</head>
+
+<body>
+    <section class="h-[40rem] w-[22.5rem] p-6 py-10 space-y-80 bg-gradient-to-t from-sky-400 to-emerald-400 bg-cover text-white"
+        id="back">
+        <div class="flex h-44 justify-between">
+            <div class="w-40">
+                <div class="text-xl" id="loc">Unavailable</div>
+                <div class="text-9xl" id="temp">NA</div>
+            </div>
+            <div class="text-lg font-semibold -rotate-90 w-56 h-20 py-20 px-7 absolute left-[10.4rem]" id="weather">
+                Unavailable</div>
+        </div>
+        <div id="b1" class="border-2 border-white text-white h-16 rounded-2xl flex space-x-10 py-2 px-9 backdrop-blur">
+            <div>
+                <div id="humidity">NA</div>
+                <div class="text-xs">Humidity</div>
+            </div>
+            <div>
+                <div id="vis">NA</div>
+                <div class="text-xs">visibilty</div>
+            </div>
+            <div>
+                <div id="uv" class="text-center">NA</div>
+                <div class="text-xs">UVindex</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.getElementById('b1').style.filter = 'blur(4px)'
+        document.getElementById('weather').style.filter = 'blur(4px)'
+        let b = prompt('Enter Your Location')
+        async function lele() {
+            return await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${b}?unitGroup=metric&key=RBNJ7YMYKU9NLGXCLZRVJ8XL7&contentType=json`).then(response => {
+                if (!response.ok) return Promise.reject('error')
+                return response.json();
+            })
+        }
+        lele().then((val) => {
+            let a = document.getElementById('loc')
+            let w = document.getElementById('weather')
+            let c = document.getElementById('humidity')
+            let d = document.getElementById('vis')
+            let e = document.getElementById('uv')
+            let t = document.getElementById('temp')
+            let bc = document.getElementById('back')
+            a.innerText = val.resolvedAddress
+            w.innerText = val.currentConditions.icon
+            c.innerText = val.currentConditions.humidity + "%"
+            d.innerText = val.currentConditions.visibility + " km"
+            e.innerText = val.currentConditions.uvindex
+            t.innerText = Math.round(val.currentConditions.temp) + "°"
+            bc.style.backgroundImage = `url('Weather Wallapers/${val.currentConditions.icon}.jpg')`
+        }, err => {
+            console.log('bug');
+        })
+        document.getElementById('b1').style.filter = 'blur(0px)'
+        document.getElementById('weather').style.filter = 'blur(0px)'
+    </script>
+</body>
+
+</html>
