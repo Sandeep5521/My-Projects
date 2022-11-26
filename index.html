@@ -278,15 +278,10 @@
                     } 
                 }
             }
-        }
-        let func=(i,j)=>{
-            if(h.innerText == 'Solved') return
-            for(let i=0;i<c.length;i++){
-                for(let j=0;j<c[i].length;j++){
-                    c[i][j].style.backgroundColor=''
-                }
+            for(let i=1;i<=9;i++){
+                let p=i.toString();
+                document.getElementById(p).style.color='';
             }
-            c[i][j].style.backgroundColor='yellow'
         }
         let Error=(a,b,item)=>{
             for(let k=0;k<9;k++){
@@ -318,6 +313,20 @@
             }
             return true;
         }
+        let func=(a,b)=>{
+            if(h.innerText == 'Solved') return
+            for(let i=0;i<c.length;i++){
+                for(let j=0;j<c[i].length;j++){
+                    c[i][j].style.backgroundColor=''
+                }
+            }
+            c[a][b].style.backgroundColor='yellow'
+            for(let i=1;i<=9;i++){
+                let p=i.toString();
+                if(c[a][b].innerText != p && !Error(a,b,p)) document.getElementById(p).style.color='red';
+                else document.getElementById(p).style.color='';
+            }
+        }
         let set=(s)=>{
             if(h.innerText == 'Solved') return
             let a=0,b=0;
@@ -328,11 +337,9 @@
                     }
                 }
             }
-            if(c[a][b].innerText != s && !Error(a,b,s)){
-                alert("You can't place this number here")
-                return
-            }
-            c[a][b].innerText=s;
+            let x=document.getElementById(s)
+            if(x.style.color == 'red') return;
+            c[a][b].innerText=x.innerText;
         }
         let erase=()=>{
             if(h.innerText == 'Solved') return
@@ -345,6 +352,10 @@
                 }
             }
             c[a][b].innerText=''
+            // for(let i=1;i<=9;i++){
+            //     let p=i.toString();
+            //     document.getElementById(p).style.color='';
+            // }
         }
         let clr=()=>{
             h.innerText = 'Solve'
@@ -356,6 +367,10 @@
                 }
             }
             c[0][0].style.backgroundColor='yellow';
+            for(let i=1;i<=9;i++){
+                let p=i.toString();
+                document.getElementById(p).style.color='';
+            }
         }
     </script>
 </body>
